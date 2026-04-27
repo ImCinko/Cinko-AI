@@ -1,0 +1,31 @@
+from openai import OpenAI
+
+# API anahtarını buraya yapıştır
+client = OpenAI(api_key="KEY")
+
+def main():
+    print("AI hazır (çıkmak için 'exit')\n")
+    
+    while True:
+        user_input = input("Sen: ")
+        
+        if user_input.lower() == "exit":
+            print("Kapatılıyor...")
+            break
+        
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4.1-mini",
+                messages=[
+                    {"role": "user", "content": user_input}
+                ]
+            )
+            
+            reply = response.choices[0].message.content
+            print("AI:", reply, "\n")
+        
+        except Exception as e:
+            print("HATA:", e)
+
+if __name__ == "__main__":
+    main()
