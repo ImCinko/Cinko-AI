@@ -1,0 +1,19 @@
+from ai import ask_ai
+
+def main():
+    print("🤖 AI Asistan Başlatıldı (çıkmak için 'exit')\n")
+    
+    history = []
+    
+    while True:
+        user_input = input("Sen: ")
+        
+        if user_input.lower() == "exit":
+            print("Görüşürüz!")
+            break
+        
+        reply, history = ask_ai(user_input, history)
+        print(f"AI: {reply}\n")
+
+if __name__ == "__main__":
+    main()
